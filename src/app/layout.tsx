@@ -1,14 +1,15 @@
 import { PropsWithChildren } from "react";
 
-const layout = ( {children}: PropsWithChildren  ) => {
-
-
+const layout = ({ children }: PropsWithChildren) => {
   return (
-    <html lang="en">
-      root
-      <div>
-      {children}
-      </div>
+    <html>
+      <body>
+        <div>
+          {children}
+        </div>
+      </body>
     </html>
   );
-}
+};
+
+export default layout;
