@@ -1,6 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import styles from "./Navbar.module.scss";
+import { FaSearch } from "react-icons/fa";
+import { CiShoppingCart } from "react-icons/ci";
+
 
 function Navbar() {
   return (
@@ -19,8 +22,8 @@ function Navbar() {
           <Link href="#">ABOUT</Link>
         </div>
         <div>
-          <button>Search</button>
-          <button>Cart </button>
+          <button><FaSearch/></button>
+          <button><CiShoppingCart/> </button>
         </div>
       </nav>
     </div>

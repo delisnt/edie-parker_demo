@@ -1,6 +1,7 @@
 .nav {
     display: flex;
     margin-block-start: 1.5rem;
+    height: 30px;
     gap: 2rem;
     justify-content: space-between;
 
@@ -16,5 +17,23 @@
 
     div:nth-child(2) {
         gap: 1rem;
+    }
+
+    div > a:hover {
+        transition: 0.5s;
+        translate: 0.75rem;
+    }
+
+    button {
+        border: none;
+        background-color: inherit;
+        cursor: pointer;
+    }
+}
+
+
+@media (width < 900px) {
+    .nav {
+        display: none;
     }
 }

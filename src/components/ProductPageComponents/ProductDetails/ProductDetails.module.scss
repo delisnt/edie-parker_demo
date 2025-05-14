@@ -1,0 +1,34 @@
+.wrapper {
+    display: flex;
+    flex-flow: column wrap;
+
+    button {
+        margin-block: 2rem;
+    }
+
+    .btn{
+        position: relative;
+        padding: 0.5rem;
+        border: 1px solid black;
+        background-color: black;
+        color: white;
+
+        span {
+            position: absolute;
+            left: 0;
+            margin-left: 1rem;
+        }
+    } 
+
+    .btn:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .readMoreBtn {
+        text-decoration: underline;
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
+    
+}

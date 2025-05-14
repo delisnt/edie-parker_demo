@@ -1,17 +1,17 @@
 import React from "react";
-import { CollapseProps, Collapse } from "antd";
+import { CollapseProps, Collapse, ConfigProvider } from "antd";
 import { AccordionProps } from "@/types";
 
-function Accordion( {details}: AccordionProps ) {
+function Accordion({ details }: AccordionProps) {
   const items: CollapseProps["items"] = [
     {
       key: "1",
       label: "DETAILS",
       children: (
         <ul>
-            {details.map((item: string, index: number) => (
-                <li key={index}>{item}</li>
-            ))}
+          {details.map((item: string, index: number) => (
+            <li key={index}>{item}</li>
+          ))}
         </ul>
       ),
     },
@@ -29,7 +29,7 @@ function Accordion( {details}: AccordionProps ) {
 
   return (
     <div>
-      <Collapse items={items}></Collapse>
+      <Collapse items={items} bordered={false}></Collapse>
     </div>
   );
 }

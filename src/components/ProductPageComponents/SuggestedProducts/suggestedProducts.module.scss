@@ -2,7 +2,6 @@
     display: flex;
     border: 2px solid black;
     gap: 1rem;
-
     img {
         max-width: 20%;
     }
@@ -17,5 +16,18 @@
     label{
         font-size: 0.75rem;
     }
+}
+
+@media (width < 900px) {
+    .card > div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        label {
+            margin-block-end: 1rem
+        }
+    }
+
 }
 

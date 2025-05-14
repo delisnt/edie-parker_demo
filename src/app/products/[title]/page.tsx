@@ -1,11 +1,12 @@
 "use client";
-import { usePathname, useParams, useRouter } from "next/navigation";
+import { usePathname, useParams } from "next/navigation";
 import productDetails from "../../../mockProductsDetails.json";
 import styles from "./singleProd.module.scss";
 import { titleToString } from "@/utils";
 import Accordion from "@/components/ProductPageComponents/Accordion/Accordion";
 import ProductDetails from "@/components/ProductPageComponents/ProductDetails/ProductDetails";
 import SuggestedProduct from "@/components/ProductPageComponents/SuggestedProducts/SuggestedProducts";
+import ProductPageCarousel from "@/components/ProductPageComponents/ProductPageCarousel/ProductPageCarousel";
 
 export default function Page() {
   const path = usePathname();
@@ -21,26 +22,28 @@ export default function Page() {
     }
   });
 
-  const suggestedProducts = matchProd?.relatedProducts.map((prod) => {
+  console.log(matchProd?.imageGallery)
 
-  })
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container1}></div>
-      <div className={styles.container2}>
+      <div className={styles.imgContainer}>
+        <img src={matchProd?.imageGallery[0]} alt="" />
+      </div>
+      <div className={styles.detailsContainer}>
         <span>home{path}</span>
         {matchProd && (
           <ProductDetails
             description={matchProd?.description}
             title={matchProd?.title}
             subtitle={matchProd?.subtitle}
+            price={matchProd.price}
           ></ProductDetails>
         )}
         <Accordion details={matchProd?.details}></Accordion>
         <div className={styles.wrapper} data-container='suggested'>
-        {matchProd?.relatedProducts.map((prod) => (
-          <SuggestedProduct title={prod.title} price={prod.price} imageUrl={prod.imageUrl}/>
+        {matchProd?.relatedProducts.map((prod, index) => (
+          <SuggestedProduct title={prod.title} price={prod.price} imageUrl={prod.imageUrl} key={index}/>
         ))}
         </div>
       </div>

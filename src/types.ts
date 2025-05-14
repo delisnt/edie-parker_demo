@@ -26,7 +26,8 @@ export interface AccordionProps {
 export interface ProductDetailsProps {
   title: string,
   subtitle: string,
-  description: string
+  description: string,
+  price: number,
 }
 
 export interface SuggestedProductProps  {
