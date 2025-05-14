@@ -17,3 +17,20 @@ export interface ProductDetails extends BaseProduct {
   details: string[];
   relatedProducts: ProductSummary[];
 }
+
+
+export interface AccordionProps {
+  details: string[];
+}
+
+export interface ProductDetailsProps {
+  title: string,
+  subtitle: string,
+  description: string
+}
+
+export interface SuggestedProductProps  {
+  title: string;
+  price: number;
+  imageUrl: string;
+}

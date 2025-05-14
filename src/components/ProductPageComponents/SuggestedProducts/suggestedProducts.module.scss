@@ -1,0 +1,21 @@
+.card {
+    display: flex;
+    border: 2px solid black;
+    gap: 1rem;
+
+    img {
+        max-width: 20%;
+    }
+
+    .innerCard {
+        margin-left: auto;
+        display: flex;
+        margin-block-start: 1rem;
+        padding-inline-end: 0.5rem;
+    }
+    
+    label{
+        font-size: 0.75rem;
+    }
+}
+

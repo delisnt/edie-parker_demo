@@ -13,3 +13,12 @@ export function titleToString(str: string): string {
     .replace(/-/g, " ") // Sostituisce i trattini con spazi
     .toUpperCase(); // Converte tutto in maiuscolo
 }
+
+export const cutAfterSlash = (str: string):string => {
+  return str.split('/')[0];
+}
+
+export const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+});

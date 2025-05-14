@@ -1,9 +1,11 @@
 .wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.container1 {
-}
-.container2 {
+.wrapper[data-container] {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equally sized columns */
+  gap: 10px; /* Gap between grid items */
+
 }
