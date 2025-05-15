@@ -1,8 +1,10 @@
-import React from "react";
 import { CollapseProps, Collapse, ConfigProvider } from "antd";
 import { AccordionProps } from "@/types";
+import { PiPlus } from "react-icons/pi";
+
 
 function Accordion({ details }: AccordionProps) {
+
   const items: CollapseProps["items"] = [
     {
       key: "1",
@@ -28,9 +30,33 @@ function Accordion({ details }: AccordionProps) {
   ];
 
   return (
-    <div>
-      <Collapse items={items} bordered={false}></Collapse>
-    </div>
+    <ConfigProvider
+      theme={{
+        components: {
+          Collapse: {
+            borderlessContentBg: "#ffffff",
+            headerBg: "#ffffff",
+            fontSize: "1rem",
+            colorBorder: 'black'
+          },
+        },
+      }}
+    >
+      <div>
+        <Collapse
+        items={items}
+        bordered={false}
+        expandIconPosition="end"
+          expandIcon={({ isActive }) =>
+            isActive ? (
+              <PiPlus size="1rem" style = {{ transform: 'rotate(135deg)' }}/>
+            ) : (
+              <PiPlus size="1rem" style = {{ transform: 'rotate(90deg)' }} />
+            )
+          }
+        />
+      </div>
+    </ConfigProvider>
   );
 }
 

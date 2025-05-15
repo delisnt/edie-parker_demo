@@ -6,12 +6,14 @@ import { titleToString } from "@/utils";
 import Accordion from "@/components/ProductPageComponents/Accordion/Accordion";
 import ProductDetails from "@/components/ProductPageComponents/ProductDetails/ProductDetails";
 import SuggestedProduct from "@/components/ProductPageComponents/SuggestedProducts/SuggestedProducts";
-import ProductPageCarousel from "@/components/ProductPageComponents/ProductPageCarousel/ProductPageCarousel";
+import { createMockData } from "@/mockFactory";
+
 
 export default function Page() {
   const path = usePathname();
   const params = useParams();
   const title = titleToString(params.title);
+
 
   const matchProd = productDetails.find((prod) => {
     const cleanTitle = title.toLowerCase().replace(/\s+/g, " ").trim();
@@ -22,7 +24,6 @@ export default function Page() {
     }
   });
 
-  console.log(matchProd?.imageGallery)
 
 
   return (

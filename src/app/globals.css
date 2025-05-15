@@ -71,3 +71,15 @@ select {
   font: inherit;
 }
 }
+
+@layer root {
+
+  :root {
+    --font-header: "Cringe, Helvetica, sans-serif";
+    --font-main: "Moderat, Helvetica, sans-serif"
+  }
+
+  h2 {
+    font-family: var(--font-header);
+  }
+}
