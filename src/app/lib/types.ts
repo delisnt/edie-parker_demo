@@ -28,6 +28,7 @@ export interface ProductDetailsProps {
   subtitle: string,
   description: string,
   price: number,
+  onClick: MouseEvent;
 }
 
 export interface SuggestedProductProps  {

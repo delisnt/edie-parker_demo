@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./Navbar.module.scss";
 import { FaSearch } from "react-icons/fa";
 import { CiShoppingCart } from "react-icons/ci";
+import Cart from "../Cart/Cart";
 
 
 function Navbar() {
@@ -23,7 +24,7 @@ function Navbar() {
         </div>
         <div>
           <button><FaSearch size={24}/></button>
-          <button><CiShoppingCart size={24}/> </button>
+          <Cart/>
         </div>
       </nav>
     </div>
