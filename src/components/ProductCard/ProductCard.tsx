@@ -1,18 +1,13 @@
 "use client";
 import React from "react";
-import { BaseProduct, ProductSummary, ProductDetails } from "@/app/lib/types";
+import { ProductSummary } from "@/app/lib/types";
 import styles from "./productCard.module.scss";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { cleanString } from "@/app/lib/utils";
+import { titleToId } from "@/app/lib/utils";
 
 function ProductCard({ products }) {
   const [isHovered, setIsHovered] = useState(false);
-  const path = usePathname()
-
-  
-  
   
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -31,7 +26,7 @@ function ProductCard({ products }) {
           <div key={`id: ${prod.title}`}>
             <p>MORE COLORS +</p>
             <div>
-              <Link href={`/products/${cleanString(prod.title)}`}>
+              <Link href={`/products/${titleToId(prod.title)}`}>
                 <img
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}

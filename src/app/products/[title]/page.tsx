@@ -1,6 +1,5 @@
 "use client";
 import { usePathname, useParams } from "next/navigation";
-import products from "../../../mockProducts.json";
 import productDetails from "../../../mockProductsDetails.json";
 import styles from "./singleProd.module.scss";
 import { titleToString, useAppDispatch, useAppSelector } from "@/app/lib/utils";
@@ -19,11 +18,12 @@ export default function Page() {
   const [products, setProducts] = useState([]);
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  const prodIds = cart.cartContent.map((prod) => prod.id);
-  console.log(prodIds);
+  const cartProdIds = cart.cartContent.map((prod) => prod.id);
+
+
 
   const addToCart = () => {
-    if (prodIds.find((id) => id === params.title)) {
+    if (cartProdIds.find((id) => id === params.title)) {
       dispatch(
         addExistingProduct({
           id: params.title,

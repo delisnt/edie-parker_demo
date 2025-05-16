@@ -11,7 +11,7 @@ function Navbar() {
       <nav className={styles.nav}>
         {/* logo */}
         <div>
-        <span>logo</span>
+          <Link href='/products'>logo</Link>
           <Link href="#">NEW ARRIVALS</Link>
           <Link href="#">BEST-SELLERS</Link>
           <Link href="#">CUSTOM</Link>
@@ -22,8 +22,8 @@ function Navbar() {
           <Link href="#">ABOUT</Link>
         </div>
         <div>
-          <button><FaSearch/></button>
-          <button><CiShoppingCart/> </button>
+          <button><FaSearch size={24}/></button>
+          <button><CiShoppingCart size={24}/> </button>
         </div>
       </nav>
     </div>

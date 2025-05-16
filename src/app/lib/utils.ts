@@ -1,4 +1,4 @@
-export function cleanString(str: string): string {
+export function titleToId(str: string): string {
   return str
     .toLowerCase()
     .trim()
