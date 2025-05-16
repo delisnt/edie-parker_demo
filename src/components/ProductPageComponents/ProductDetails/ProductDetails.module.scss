@@ -30,8 +30,15 @@
     }
 
     .readMoreBtn {
-        text-decoration: underline;
         margin-block: 1rem;
         cursor: pointer;
+
+        span {
+            text-decoration: underline;
+        }
+
+        a {
+            text-decoration: none;
+        }
     }
 }

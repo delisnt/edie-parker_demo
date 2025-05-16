@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useParams } from "next/navigation";
-import products from '../../../mockProducts.json'
+import products from "../../../mockProducts.json";
 import productDetails from "../../../mockProductsDetails.json";
 import styles from "./singleProd.module.scss";
 import { titleToString, useAppDispatch, useAppSelector } from "@/app/lib/utils";
@@ -9,26 +9,43 @@ import ProductDetails from "@/components/ProductPageComponents/ProductDetails/Pr
 import SuggestedProduct from "@/components/ProductPageComponents/SuggestedProducts/SuggestedProducts";
 import { createMockData } from "@/mockFactory";
 import { useEffect, useState } from "react";
-import { addProduct } from "@/app/lib/cartSlice";
+import { addProduct, addExistingProduct } from "@/app/lib/cartSlice";
 
 export default function Page() {
   const path = usePathname();
   const params = useParams();
   const title = titleToString(params.title);
   const mockData = createMockData(productDetails);
-  console.log(products)
-
-  const cart = useAppSelector((state) => state.cart)
-  const dispatch = useAppDispatch()
+  const [products, setProducts] = useState([]);
+  const cart = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const prodIds = cart.cartContent.map((prod) => prod.id);
+  console.log(prodIds);
 
   const addToCart = () => {
-    dispatch(addProduct({title: '', price: '', imgUrl: '', }))
-  }
-  console.log(cart);
-  
+    if (prodIds.find((id) => id === params.title)) {
+      dispatch(
+        addExistingProduct({
+          id: params.title,
+          quantity: 1,
+        })
+      );
+    } else {
+      dispatch(
+        addProduct({
+          title: matchProd?.title,
+          price: matchProd?.price,
+          imgUrl: matchProd?.imageGallery[0],
+          id: params.title,
+          quantity: 1,
+        })
+      );
+    }
+  };
+  console.log(cart)
+
 
   useEffect(() => {
-
     mockData()
       .then((data) => {
         console.log("Fetched products:", data);
@@ -48,7 +65,6 @@ export default function Page() {
       return "Not Found";
     }
   });
-
 
   return (
     <div className={styles.wrapper}>
