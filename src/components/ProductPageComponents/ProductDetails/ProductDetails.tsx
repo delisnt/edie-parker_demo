@@ -1,23 +1,28 @@
-import React from "react";
-import { ProductDetailsProps } from "@/types";
-import styles from "./ProductDetails.module.scss"
-import { formatter } from "@/utils";
+import { ProductDetailsProps } from "@/app/lib/types";
+import styles from "./ProductDetails.module.scss";
+import ReadMoreBtn from "./ReadMoreBtn";
 
 function ProductDetails({
   title,
   subtitle,
   description,
-  price
+  price,
+  onClick,
 }: ProductDetailsProps) {
 
+  
   return (
     <>
       <div className={styles.wrapper}>
         <h2>{title}</h2>
         <span>{subtitle}</span>
-        <button className={styles.btn}><span>{formatter.format(price)}</span>ADD TO CART</button>
+        <button className={styles.btn} onClick={onClick}>
+          <span>${price}</span>ADD TO CART
+        </button>
         <p>{description}</p>
-        <span className={styles.readMoreBtn}>READ MORE</span>
+        <div className={styles.readMoreBtn}>
+          <ReadMoreBtn  />
+        </div>
       </div>
     </>
   );

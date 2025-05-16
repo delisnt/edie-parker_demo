@@ -1,21 +1,31 @@
 .card {
     display: flex;
-    border: 2px solid black;
-    gap: 1rem;
+    border: 1px solid black;
+    gap: 0.5rem;
     img {
-        max-width: 20%;
+        max-width: 25%;
     }
 
-    .innerCard {
+    .innerCardMiddle {
+      padding-block: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+    }
+
+    .innerCardEnd {
         margin-left: auto;
         display: flex;
         margin-block-start: 1rem;
         padding-inline-end: 0.5rem;
     }
-    
+
     label{
-        font-size: 0.75rem;
-    }
+      font-size: 0.75rem;
+  }
+    
+
 }
 
 @media (width < 900px) {

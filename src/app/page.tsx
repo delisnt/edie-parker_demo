@@ -1,9 +1,9 @@
 import React from 'react'
 
-function ProductsPage() {
+function App() {
   return (
     <div>root</div>
   )
 }
 
-export default ProductsPage
+export default App

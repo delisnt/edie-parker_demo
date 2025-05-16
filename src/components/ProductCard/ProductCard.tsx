@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { BaseProduct, ProductSummary, ProductDetails } from "@/types";
+import { BaseProduct, ProductSummary, ProductDetails } from "@/app/lib/types";
 import styles from "./productCard.module.scss";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { cleanString } from "@/utils";
+import { cleanString } from "@/app/lib/utils";
 
 function ProductCard({ products }) {
   const [isHovered, setIsHovered] = useState(false);

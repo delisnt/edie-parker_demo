@@ -1,5 +1,5 @@
 import { CollapseProps, Collapse, ConfigProvider } from "antd";
-import { AccordionProps } from "@/types";
+import { AccordionProps } from "@/app/lib/types";
 import { PiPlus } from "react-icons/pi";
 
 
@@ -10,7 +10,7 @@ function Accordion({ details }: AccordionProps) {
       key: "1",
       label: "DETAILS",
       children: (
-        <ul>
+        <ul style={{paddingInline: 0}}>
           {details.map((item: string, index: number) => (
             <li key={index}>{item}</li>
           ))}
@@ -37,12 +37,13 @@ function Accordion({ details }: AccordionProps) {
             borderlessContentBg: "#ffffff",
             headerBg: "#ffffff",
             fontSize: "1rem",
-            colorBorder: 'black'
+            colorBorder: 'black',
+            padding: 0,
           },
         },
       }}
     >
-      <div>
+      <div style={{borderBottom: '1px solid black'}}>
         <Collapse
         items={items}
         bordered={false}

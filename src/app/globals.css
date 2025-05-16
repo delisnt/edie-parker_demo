@@ -5,6 +5,8 @@
   box-sizing: border-box;
 }
 
+
+
 /* https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/ */
 html {
   -moz-text-size-adjust: none;
@@ -76,10 +78,12 @@ select {
 
   :root {
     --font-header: "Cringe, Helvetica, sans-serif";
+    --fs-header: 5rem;
     --font-main: "Moderat, Helvetica, sans-serif"
   }
 
   h2 {
     font-family: var(--font-header);
+    font-size: var(--fs-header);
   }
 }
