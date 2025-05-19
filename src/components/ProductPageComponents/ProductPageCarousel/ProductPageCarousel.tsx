@@ -2,18 +2,20 @@ import React from "react";
 import { Carousel } from "antd";
 
 
-const ProductPageCarousel: React.FC = ({ imgs }) => {
+
+const ProductPageCarousel: React.FC = ({ imgUrl, alternativeImgUrl}) => {
   const onChange = (currentSlide: number) => {
     console.log(currentSlide);
   };
 
   return (
-    <Carousel afterChange={onChange}>
-      {imgs.map((item) => (
+    <Carousel arrows={true} afterChange={onChange}>
         <div>
-          <img src={item} alt="carousel img" />
+          <img src={imgUrl} alt="carousel img 1" />
         </div>
-      ))}
+        <div>
+          <img src={alternativeImgUrl} alt="carousel img 2" />
+        </div>
     </Carousel>
   );
 };

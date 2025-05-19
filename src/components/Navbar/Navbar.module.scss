@@ -1,6 +1,5 @@
 .nav {
     display: flex;
-    position: relative;
     align-items: center;
     height: 44px;
     gap: 2rem;
@@ -8,6 +7,12 @@
     border-bottom: 1px solid black;
     padding-inline: 2rem;
 
+    .navLinks {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        gap: 1rem;
+    }
 
     div {
         display: flex;
@@ -35,6 +40,11 @@
     }
 }
 
+@media (width < 1100px) {
+    .nav {
+      height: 70px;  
+    }
+}
 
 @media (width < 900px) {
     .nav {

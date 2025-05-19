@@ -8,6 +8,7 @@ function ProductDetails({
   description,
   price,
   onClick,
+  inStock
 }: ProductDetailsProps) {
 
   
@@ -16,9 +17,12 @@ function ProductDetails({
       <div className={styles.wrapper}>
         <h2>{title}</h2>
         <span>{subtitle}</span>
-        <button className={styles.btn} onClick={onClick}>
+        {inStock ? <button className={styles.btn} onClick={onClick}>
           <span>${price}</span>ADD TO CART
-        </button>
+        </button> : 
+        <button className={styles.btn} onClick={onClick}>
+          <span>${price}</span>PRODUCT NOT IN STOCK, TRY LATER
+        </button>}
         <p>{description}</p>
         <div className={styles.readMoreBtn}>
           <ReadMoreBtn  />

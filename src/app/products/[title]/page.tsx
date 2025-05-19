@@ -2,8 +2,14 @@
 import { usePathname, useParams } from "next/navigation";
 import productDetails from "../../../mockProductsDetails.json";
 import styles from "./singleProd.module.scss";
-import { titleToString, useAppDispatch, useAppSelector } from "@/app/lib/utils";
+import {
+  titleToId,
+  titleToString,
+  useAppDispatch,
+  useAppSelector,
+} from "@/app/lib/utils";
 import Accordion from "@/components/ProductPageComponents/Accordion/Accordion";
+import ProductPageCarousel from "@/components/ProductPageComponents/ProductPageCarousel/ProductPageCarousel";
 import ProductDetails from "@/components/ProductPageComponents/ProductDetails/ProductDetails";
 import SuggestedProduct from "@/components/ProductPageComponents/SuggestedProducts/SuggestedProducts";
 import { createMockData } from "@/mockFactory";
@@ -19,31 +25,33 @@ export default function Page() {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const cartProdIds = cart.cartContent.map((prod) => prod.id);
-
-
+  const [error, setError] = useState({ error: false, message: "" });
 
   const addToCart = () => {
-    if (cartProdIds.find((id) => id === params.title)) {
-      dispatch(
-        addExistingProduct({
-          id: params.title,
-          quantity: 1,
-        })
-      );
-    } else {
-      dispatch(
-        addProduct({
-          title: matchProd?.title,
-          price: matchProd?.price,
-          imgUrl: matchProd?.imageGallery[0],
-          id: params.title,
-          quantity: 1,
-        })
-      );
+    try {
+      if (cartProdIds.find((id) => id === params.title)) {
+        dispatch(
+          addExistingProduct({
+            id: params.title,
+            quantity: 1,
+          })
+        );
+      } else {
+        dispatch(
+          addProduct({
+            title: matchProd?.title,
+            price: matchProd?.price,
+            imgUrl: matchProd?.imageGallery[0],
+            id: params.title,
+            quantity: 1,
+          })
+        );
+      }
+    } catch (error) {
+      setError({error: true, message: `There was a problem with redux: ${error}`})
     }
   };
-  console.log(cart)
-
+  console.log(cart);
 
   useEffect(() => {
     mockData()
@@ -52,37 +60,49 @@ export default function Page() {
         setProducts(data);
       })
       .catch((err) => {
-        console.error("Error fetching products:", err.message);
-        // handle error state
+        console.error(err);
       });
   }, []);
 
-  const matchProd = productDetails.find((prod) => {
-    const cleanTitle = title.toLowerCase().replace(/\s+/g, " ").trim();
-    if (cleanTitle.includes(prod.title.toLocaleLowerCase())) {
-      return prod;
-    } else {
-      return "Not Found";
+  const matchProd = products.find((prod) => {
+    try {
+      const cleanTitle = titleToId(title);
+      const cleanProdTitle = titleToId(`${prod.title} ${prod.subtitle}`);
+      console.log(`Clean title: ${cleanTitle} prod title: ${cleanProdTitle}`);
+      if (cleanTitle.includes(titleToId(cleanTitle))) {
+        return prod;
+      }
+    } catch (error) {
+      setError({ error: true, message: `Products not found: ${error}` });
     }
   });
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.imgContainer}>
-        <img src={matchProd?.imageGallery[0]} alt="" />
+        {matchProd ? (
+          <img
+            src={matchProd?.imageGallery[0]}
+          />
+        ) : (
+          <div className={styles.loading}>images are loading...</div>
+        )}
       </div>
       <div className={styles.detailsContainer}>
         <div className={styles.breadcrumb}>
           <span>home{path}</span>
         </div>
-        {matchProd && (
+        {matchProd ? (
           <ProductDetails
             onClick={addToCart}
             description={matchProd?.description}
             title={matchProd?.title}
             subtitle={matchProd?.subtitle}
-            price={matchProd.price}
+            price={matchProd?.price}
+            inStock={matchProd?.inStock}
           ></ProductDetails>
+        ) : (
+          <div>Loading product</div>
         )}
         <Accordion details={matchProd?.details}></Accordion>
         <div className={styles.spacer}>

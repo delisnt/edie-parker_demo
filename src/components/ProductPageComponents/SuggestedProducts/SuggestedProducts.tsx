@@ -16,7 +16,7 @@ function SuggestedProduct({ imageUrl, price, title }: SuggestedProductProps) {
   const [isChecked, setIsChecked] = useState(false);
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  console.log(cart);
+
 
   const addCheckedProduct = () => {
     if (!isChecked) {
