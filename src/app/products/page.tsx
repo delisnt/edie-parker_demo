@@ -2,7 +2,6 @@ import ProductCard from "@/components/ProductCard/ProductCard";
 import products from "../../mockProducts.json";
 import styles from "./Products.module.scss";
 
-
 function ProductsPage() {
 
   return (
