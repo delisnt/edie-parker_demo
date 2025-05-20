@@ -3,37 +3,14 @@ import styles from "./suggestedProducts.module.scss";
 import {
   formatter,
   cutAfterSlash,
-  useAppSelector,
-  useAppDispatch,
   titleToId,
 } from "@/app/lib/utils";
-import { addProduct, removeProduct } from "@/app/lib/cartSlice";
-import { useState } from "react";
 
-function SuggestedProduct({ imageUrl, price, title }: SuggestedProductProps) {
+
+function SuggestedProduct({ imageUrl, price, title, onChange, isChecked }: SuggestedProductProps) {
   const formattedTitle = cutAfterSlash(title);
   const prodId = titleToId(title);
-  const [isChecked, setIsChecked] = useState(false);
-  const cart = useAppSelector((state) => state.cart);
-  const dispatch = useAppDispatch();
 
-
-  const addCheckedProduct = () => {
-    if (!isChecked) {
-      dispatch(
-        addProduct({
-          title: title,
-          price: price,
-          imgUrl: imageUrl,
-          quantity: 1,
-          id: prodId
-        })
-      );
-    } else {
-      dispatch(removeProduct(prodId));
-    }
-    setIsChecked(!isChecked);
-  };
 
   return (
     <div className={styles.card}>
@@ -43,11 +20,9 @@ function SuggestedProduct({ imageUrl, price, title }: SuggestedProductProps) {
         <label className={styles.container}>
           <input
             type="checkbox"
-            checked={isChecked}
-            id={prodId}
-            onChange={() =>
-              addCheckedProduct()
-            }
+            checked={!!isChecked[prodId]}
+            name={prodId}
+            onChange={() => onChange()}
           />
           <div className={styles.checkmark}></div>
           ADD TO PURCHASE
