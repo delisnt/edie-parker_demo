@@ -18,6 +18,7 @@ import {
   addExistingProduct,
   removeProduct,
 } from "@/app/lib/cartSlice";
+import ProductPageCarousel from "@/components/ProductPageComponents/ProductPageCarousel/ProductPageCarousel";
 
 
 export default function Page() {
@@ -47,18 +48,27 @@ export default function Page() {
       });
   }, []);
 
+
+
   const matchProd = products.find((prod) => {
     try {
       const cleanTitle = titleToId(title);
       const cleanProdTitle = titleToId(`${prod.title} ${prod.subtitle}`);
       console.log(`Clean title: ${cleanTitle} prod title: ${cleanProdTitle}`);
-      if (cleanTitle.includes(titleToId(cleanTitle))) {
+      if (titleToId(cleanTitle).includes(titleToId(cleanProdTitle))) {
         return prod;
+      } else {
+        return "No product was found"
       }
     } catch (error) {
       setError({ error: true, message: `Products not found: ${error}` });
     }
-  });
+  })
+
+  console.log(matchProd)
+
+
+
 
 // function to add/remove a checked product
 
@@ -114,13 +124,15 @@ export default function Page() {
     }
   };
 
+  console.log(matchProd?.colors)
+
   return (
     <>
       {!error.error ? (
         <div className={styles.wrapper}>
           <div className={styles.imgContainer}>
             {matchProd ? (
-              <img src={matchProd?.imageGallery[0]} />
+              <ProductPageCarousel imgs={matchProd?.imageGallery} />
             ) : (
               <div className={styles.loading}>images are loading...</div>
             )}
@@ -129,6 +141,10 @@ export default function Page() {
             <div className={styles.breadcrumb}>
               <span>home{path}</span>
             </div>
+            <p>Colors</p>
+            {matchProd?.colors.map((color) => (
+              <li>{color}</li>
+            ))}
             {matchProd ? (
               <ProductDetails
                 onClick={addToCart}

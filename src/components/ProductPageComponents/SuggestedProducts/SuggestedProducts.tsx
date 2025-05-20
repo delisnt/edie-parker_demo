@@ -5,6 +5,7 @@ import {
   cutAfterSlash,
   titleToId,
 } from "@/app/lib/utils";
+import Link from "next/link";
 
 
 function SuggestedProduct({ imageUrl, price, title, onChange, isChecked }: SuggestedProductProps) {
@@ -16,7 +17,7 @@ function SuggestedProduct({ imageUrl, price, title, onChange, isChecked }: Sugge
     <div className={styles.card}>
       <img src={imageUrl} alt="suggested product image" />
       <div className={styles.innerCardMiddle}>
-        <span>{formattedTitle}</span>
+        <Link href={prodId}><span>{formattedTitle}</span></Link>
         <label className={styles.container}>
           <input
             type="checkbox"
