@@ -1,5 +1,5 @@
 "use client";
-import { usePathname, useParams, notFound } from "next/navigation";
+import { usePathname, useParams } from "next/navigation";
 import productDetails from "../../../mockProductsDetails.json";
 import styles from "./singleProd.module.scss";
 import {
@@ -18,6 +18,7 @@ import {
   addExistingProduct,
   removeProduct,
 } from "@/app/lib/cartSlice";
+
 
 export default function Page() {
   const path = usePathname();
@@ -39,7 +40,7 @@ export default function Page() {
       })
       .catch((err) => {
         console.error(err);
-        notFound();
+        setError({ error: true, message: `Could not fetch product: ${err}` });
       });
   }, []);
 
@@ -108,54 +109,62 @@ export default function Page() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.imgContainer}>
-        {matchProd ? (
-          <img src={matchProd?.imageGallery[0]} />
-        ) : (
-          <div className={styles.loading}>images are loading...</div>
-        )}
-      </div>
-      <div className={styles.detailsContainer}>
-        <div className={styles.breadcrumb}>
-          <span>home{path}</span>
+    <>
+      {!error.error ? (
+        <div className={styles.wrapper}>
+          <div className={styles.imgContainer}>
+            {matchProd ? (
+              <img src={matchProd?.imageGallery[0]} />
+            ) : (
+              <div className={styles.loading}>images are loading...</div>
+            )}
+          </div>
+          <div className={styles.detailsContainer}>
+            <div className={styles.breadcrumb}>
+              <span>home{path}</span>
+            </div>
+            {matchProd ? (
+              <ProductDetails
+                onClick={addToCart}
+                description={matchProd?.description}
+                title={matchProd?.title}
+                subtitle={matchProd?.subtitle}
+                price={matchProd?.price}
+                inStock={matchProd?.inStock}
+              ></ProductDetails>
+            ) : (
+              <div>Loading product</div>
+            )}
+            <Accordion details={matchProd?.details}></Accordion>
+            <div className={styles.spacer}>
+              <span>PERFECT MATCH WITH...</span>
+            </div>
+            <div className={styles.wrapper} data-container="suggested">
+              {matchProd?.relatedProducts.map((prod, index) => (
+                <SuggestedProduct
+                  title={prod.title}
+                  price={prod.price}
+                  imageUrl={prod.imageUrl}
+                  key={index}
+                  onChange={() =>
+                    addCheckedProduct(
+                      prod.title,
+                      prod.price,
+                      prod.imageUrl,
+                      titleToId(prod.title)
+                    )
+                  }
+                  isChecked={isChecked}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-        {matchProd ? (
-          <ProductDetails
-            onClick={addToCart}
-            description={matchProd?.description}
-            title={matchProd?.title}
-            subtitle={matchProd?.subtitle}
-            price={matchProd?.price}
-            inStock={matchProd?.inStock}
-          ></ProductDetails>
-        ) : (
-          <div>Loading product</div>
-        )}
-        <Accordion details={matchProd?.details}></Accordion>
-        <div className={styles.spacer}>
-          <span>PERFECT MATCH WITH...</span>
-        </div>
-        <div className={styles.wrapper} data-container="suggested">
-          {matchProd?.relatedProducts.map((prod, index) => (
-            <SuggestedProduct
-              title={prod.title}
-              price={prod.price}
-              imageUrl={prod.imageUrl}
-              key={index}
-              onChange={() =>
-                addCheckedProduct(
-                  prod.title,
-                  prod.price,
-                  prod.imageUrl,
-                  titleToId(prod.title)
-                )
-              }
-              isChecked={isChecked}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+      ) : (
+        <div className="error">
+          {error.message}
+          </div>
+      )}
+    </>
   );
 }
