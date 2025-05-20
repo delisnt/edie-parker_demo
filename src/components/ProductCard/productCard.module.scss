@@ -1,53 +1,65 @@
 .wrapper {
-    display: flex;
-    gap: 2rem;
-    margin-inline: 1rem;
-    margin-block-start: 1rem;
+  display: flex;
+  gap: 2rem;
+  margin-inline: 1rem;
+  margin-block-start: 1rem;
+  position: relative;
+
+  > * {
+    flex: 0 0 32%;
+  }
+
+  button {
+    width: 100%;
+    background-color: black;
+    color: white; 
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  p:nth-child(1) {
+    position: absolute;
+    top: 0;
+    margin-inline-start: 0.5rem;
+    z-index: 1;
+  }
+
+  .productCard {
     position: relative;
-
-    > * {
-        flex: 0 0 32%;
-    }
-    
-    button {
-        width: 100%;
-        background-color: black;
-        color: white;
-    }
-
-    img {
-        max-width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    
-    p:nth-child(1) {
-        position: absolute;
-        top: 0;
-        margin-inline-start: 0.5rem;
-    }
-
-    .productCard {
-        position: relative;
-    }
-
-
+  }
 }
 
 .btn {
-    opacity: 0;
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    transition: 0.2s;
+  opacity: 0;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  transition: 0.2s;
+  border: none;
 }
 
 .productCard:hover {
+  .btn {
+    opacity: 1;
+    transition: 0.2s;
+  }
+}
+
+.text {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media (width < 769px) {
     .btn {
         opacity: 1;
-        transition: 0.2s;
     }
 }

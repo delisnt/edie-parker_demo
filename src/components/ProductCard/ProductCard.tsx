@@ -4,7 +4,7 @@ import { ProductSummary } from "@/app/lib/types";
 import styles from "./productCard.module.scss";
 import Link from "next/link";
 import { titleToId } from "@/app/lib/utils";
-import { useAppDispatch, useAppSelector } from "@/app/lib/utils";
+import { useAppDispatch, useAppSelector, formatter } from "@/app/lib/utils";
 import { addExistingProduct, addProduct } from "@/app/lib/cartSlice";
 
 function ProductCard({ products }) {
@@ -25,6 +25,7 @@ function ProductCard({ products }) {
       );
     }
   };
+
 
   return (
     <div className={styles.wrapper}>
@@ -51,7 +52,10 @@ function ProductCard({ products }) {
               </button>
             </div>
           </div>
-          <p>{prod.title}</p>
+          <div className={styles.text}>
+            <span>{prod.title}</span>
+            <span>{formatter.format(prod.price)}</span>
+          </div>
         </div>
       ))}
     </div>

@@ -32,6 +32,9 @@ export default function Page() {
   const cartProdIds = cart.cartContent.map((prod) => prod.id);
   const [error, setError] = useState({ error: false, message: "" });
 
+
+// Mockdata to simulate network calls
+
   useEffect(() => {
     mockData()
       .then((data) => {
@@ -57,7 +60,7 @@ export default function Page() {
     }
   });
 
-  console.log(matchProd);
+// function to add/remove a checked product
 
   const addCheckedProduct = (title, price, imageUrl, prodId) => {
     const alreadyChecked = !!isChecked[prodId];
@@ -79,6 +82,9 @@ export default function Page() {
       [prodId]: !alreadyChecked,
     }));
   };
+
+
+// function to add product in the cart
 
   const addToCart = () => {
     try {
