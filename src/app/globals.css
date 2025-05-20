@@ -74,16 +74,11 @@ select {
 }
 }
 
-@layer root {
+@layer global {
 
-  :root {
-    --font-header: "Cringe, Helvetica, sans-serif";
-    --fs-header: 5rem;
-    --font-main: "Moderat, Helvetica, sans-serif"
+  .error {
+    font-size: 50px;
+    color: red;
   }
 
-  h2 {
-    font-family: var(--font-header);
-    font-size: var(--fs-header);
-  }
 }

@@ -1,5 +1,5 @@
 "use client";
-import { usePathname, useParams } from "next/navigation";
+import { usePathname, useParams, notFound } from "next/navigation";
 import productDetails from "../../../mockProductsDetails.json";
 import styles from "./singleProd.module.scss";
 import {
@@ -9,7 +9,6 @@ import {
   useAppSelector,
 } from "@/app/lib/utils";
 import Accordion from "@/components/ProductPageComponents/Accordion/Accordion";
-import ProductPageCarousel from "@/components/ProductPageComponents/ProductPageCarousel/ProductPageCarousel";
 import ProductDetails from "@/components/ProductPageComponents/ProductDetails/ProductDetails";
 import SuggestedProduct from "@/components/ProductPageComponents/SuggestedProducts/SuggestedProducts";
 import { createMockData } from "@/mockFactory";
@@ -60,7 +59,8 @@ export default function Page() {
         setProducts(data);
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err)
+        notFound()
       });
   }, []);
 

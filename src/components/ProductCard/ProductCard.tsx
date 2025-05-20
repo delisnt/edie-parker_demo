@@ -7,7 +7,7 @@ import Link from "next/link";
 import { titleToId } from "@/app/lib/utils";
 
 function ProductCard({ products }) {
-  const [hoveredIndex, setHoveredIndex] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(0);
 
 
 
@@ -17,7 +17,7 @@ function ProductCard({ products }) {
         <div
           onMouseEnter={() => setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
-          key={titleToId(prod.title)}
+          key={index}
         >
           <p>MORE COLORS +</p>
           <div>

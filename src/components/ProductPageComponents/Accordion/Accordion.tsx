@@ -3,6 +3,7 @@ import { AccordionProps } from "@/app/lib/types";
 import { PiPlus } from "react-icons/pi";
 
 function Accordion({ details }: AccordionProps) {
+
   const items: CollapseProps["items"] = [
     {
       key: "1",
@@ -30,6 +31,7 @@ function Accordion({ details }: AccordionProps) {
       ),
     },
   ];
+
 
   return (
     <ConfigProvider
