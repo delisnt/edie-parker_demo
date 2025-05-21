@@ -42,3 +42,17 @@
         }
     }
 }
+
+.colorsContainer {
+    margin-block-start: 3rem;
+    display: flex;
+    gap: 0.5rem;
+
+    div {
+        border-radius: 100%;
+        border: 1px solid white;
+        width: 30px;
+        height: 30px;
+        box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 8px 0px;
+    }
+}

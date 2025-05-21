@@ -7,25 +7,33 @@ function ProductDetails({
   subtitle,
   description,
   price,
+  colors,
   onClick,
-  inStock
+  inStock,
 }: ProductDetailsProps) {
-
-  
   return (
     <>
       <div className={styles.wrapper}>
         <h2>{title}</h2>
         <span>{subtitle}</span>
-        {inStock ? <button className={styles.btn} onClick={onClick}>
-          <span>${price}</span>ADD TO CART
-        </button> : 
-        <button className={styles.btn} onClick={onClick}>
-          <span>${price}</span>PRODUCT NOT IN STOCK, TRY LATER
-        </button>}
+        <div className={styles.colorsContainer}>
+          {colors.map((color) => (
+            <div key={color} style={{ backgroundColor: `${color}` }}></div>
+          ))}
+        </div>
+
+        {inStock ? (
+          <button className={styles.btn} onClick={onClick}>
+            <span>${price}</span>ADD TO CART
+          </button>
+        ) : (
+          <button className={styles.btn} onClick={onClick}>
+            <span>${price}</span>PRODUCT NOT IN STOCK, TRY LATER
+          </button>
+        )}
         <p>{description}</p>
         <div className={styles.readMoreBtn}>
-          <ReadMoreBtn  />
+          <ReadMoreBtn />
         </div>
       </div>
     </>

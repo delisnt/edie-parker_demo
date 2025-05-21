@@ -141,13 +141,10 @@ export default function Page() {
             <div className={styles.breadcrumb}>
               <span>home{path}</span>
             </div>
-            <p>Colors</p>
-            {matchProd?.colors.map((color) => (
-              <li>{color}</li>
-            ))}
             {matchProd ? (
               <ProductDetails
                 onClick={addToCart}
+                colors={matchProd?.colors}
                 description={matchProd?.description}
                 title={matchProd?.title}
                 subtitle={matchProd?.subtitle}
